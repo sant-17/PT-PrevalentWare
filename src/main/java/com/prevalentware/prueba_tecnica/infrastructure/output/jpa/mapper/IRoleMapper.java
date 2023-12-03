@@ -1,7 +1,7 @@
 package com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper;
 
-import com.prevalentware.prueba_tecnica.domain.model.CountryModel;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Country;
+import com.prevalentware.prueba_tecnica.domain.model.RoleModel;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Role;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -12,6 +12,7 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
-public interface ICountryMapper {
-    CountryModel toCountryModel(Country country);
+public interface IRoleMapper {
+    RoleModel toRoleModel(Role role);
+    List<RoleModel> toRoleModelList(List<Role> roleList);
 }
