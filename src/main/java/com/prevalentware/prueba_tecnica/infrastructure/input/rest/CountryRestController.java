@@ -21,13 +21,16 @@ public class CountryRestController {
 
     private final ICountryService countryService;
 
-    @GetMapping("/size/{size}/number/{number}")
+    @GetMapping("all/size/{size}/number/{number}")
     public ResponseEntity<APIResponse<List<CountryResponseDto>>> getAllCountries(@PathVariable("size") Integer size, @PathVariable("number") Integer number){
         List<CountryResponseDto> countryResponseList = countryService.getAllCountries(number, size);
+
         APIResponse<List<CountryResponseDto>> response = APIResponse.ok(
                 countryResponseList,
                 Constant.getLogResponseHashMap(),
-                Constant.LOG_RESPONSE_CODE_PREFIX.concat("6"));
+                Constant.LOG_RESPONSE_CODE_PREFIX.concat("6")
+        );
+
         return ResponseEntity
                 .status(HttpStatus.valueOf(response.getHttpStatus()))
                 .body(response);

@@ -2,16 +2,22 @@ package com.prevalentware.prueba_tecnica.infrastructure.configuration;
 
 import com.prevalentware.prueba_tecnica.domain.api.ICountryServicePort;
 import com.prevalentware.prueba_tecnica.domain.api.IRoleServicePort;
+import com.prevalentware.prueba_tecnica.domain.api.IUserServicePort;
 import com.prevalentware.prueba_tecnica.domain.spi.ICountryPersistencePort;
 import com.prevalentware.prueba_tecnica.domain.spi.IRolePersistencePort;
+import com.prevalentware.prueba_tecnica.domain.spi.IUserPersistencePort;
 import com.prevalentware.prueba_tecnica.domain.usecase.CountryUseCase;
 import com.prevalentware.prueba_tecnica.domain.usecase.RoleUseCase;
+import com.prevalentware.prueba_tecnica.domain.usecase.UserUseCase;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.CountryJpaAdapter;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.RoleJpaAdapter;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.UserJpaAdapter;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.ICountryMapper;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IRoleMapper;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IUserMapper;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.ICountryRepository;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IRoleRepository;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +29,8 @@ public class BeanConfiguration {
     private final ICountryMapper countryMapper;
     private final IRoleRepository roleRepository;
     private final IRoleMapper roleMapper;
+    private final IUserRepository userRepository;
+    private final IUserMapper userMapper;
 
     @Bean
     public ICountryPersistencePort countryPersistencePort(){
@@ -42,5 +50,15 @@ public class BeanConfiguration {
     @Bean
     public IRoleServicePort roleServicePort(){
         return new RoleUseCase(rolePersistencePort());
+    }
+
+    @Bean
+    public IUserPersistencePort userPersistencePort(){
+        return new UserJpaAdapter(userRepository, userMapper);
+    }
+
+    @Bean
+    public IUserServicePort userServicePort(){
+        return new UserUseCase(userPersistencePort());
     }
 }
