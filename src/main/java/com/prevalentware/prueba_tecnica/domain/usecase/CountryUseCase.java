@@ -16,6 +16,6 @@ public class CountryUseCase implements ICountryServicePort {
 
     @Override
     public List<CountryModel> getAllCountries(Integer pageNumber, Integer pageSize) {
-        return null;
+        return countryPersistencePort.getAllCountries(pageNumber, pageSize);
     }
 }

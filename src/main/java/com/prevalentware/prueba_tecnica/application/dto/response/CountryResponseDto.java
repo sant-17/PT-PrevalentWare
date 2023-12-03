@@ -11,5 +11,5 @@ public class CountryResponseDto {
     private String id;
     private String name;
     private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 }

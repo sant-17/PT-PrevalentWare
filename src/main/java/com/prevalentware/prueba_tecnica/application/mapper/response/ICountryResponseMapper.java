@@ -9,9 +9,10 @@ import java.util.List;
 
 @Mapper(
         componentModel = "spring",
-        unmappedSourcePolicy = ReportingPolicy.IGNORE,
-        unmappedTargetPolicy = ReportingPolicy.IGNORE
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface ICountryResponseMapper {
+
     List<CountryResponseDto> toResponseList(List<CountryModel> countryModelList);
 }

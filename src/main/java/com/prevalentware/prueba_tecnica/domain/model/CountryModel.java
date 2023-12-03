@@ -3,17 +3,16 @@ package com.prevalentware.prueba_tecnica.domain.model;
 import java.time.LocalDateTime;
 
 public class CountryModel {
-
     private String id;
     private String name;
     private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
-    public CountryModel(String id, String name, LocalDateTime createdAt, LocalDateTime updateAt) {
+    public CountryModel(String id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
-        this.updateAt = updateAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getId() {
@@ -40,11 +39,11 @@ public class CountryModel {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdateAt() {
-        return updateAt;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
