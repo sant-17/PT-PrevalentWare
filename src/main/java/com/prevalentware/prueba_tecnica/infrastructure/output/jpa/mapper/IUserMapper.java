@@ -12,4 +12,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface IUserMapper {
     UserModel toUserModel(User user);
+    User toUser(UserModel userModel);
 }

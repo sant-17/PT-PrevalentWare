@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T16:42:10-0500",
+    date = "2023-12-03T20:14:08-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -54,6 +54,29 @@ public class IUserMapperImpl implements IUserMapper {
         UserModel userModel = new UserModel( id, email, emailVerified, termsAndConditionsAccepted, name, image, position, createdAt, updatedAt, roleId, countries );
 
         return userModel;
+    }
+
+    @Override
+    public User toUser(UserModel userModel) {
+        if ( userModel == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setId( userModel.getId() );
+        user.setEmail( userModel.getEmail() );
+        user.setEmailVerified( userModel.getEmailVerified() );
+        user.setTermsAndConditionsAccepted( userModel.getTermsAndConditionsAccepted() );
+        user.setName( userModel.getName() );
+        user.setImage( userModel.getImage() );
+        user.setPosition( userModel.getPosition() );
+        user.setCreatedAt( userModel.getCreatedAt() );
+        user.setUpdatedAt( userModel.getUpdatedAt() );
+        user.setRoleId( roleModelToRole( userModel.getRoleId() ) );
+        user.setCountries( countryModelSetToCountrySet( userModel.getCountries() ) );
+
+        return user;
     }
 
     protected RoleModel roleToRoleModel(Role role) {
@@ -102,6 +125,48 @@ public class IUserMapperImpl implements IUserMapper {
         Set<CountryModel> set1 = new LinkedHashSet<CountryModel>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
         for ( Country country : set ) {
             set1.add( countryToCountryModel( country ) );
+        }
+
+        return set1;
+    }
+
+    protected Role roleModelToRole(RoleModel roleModel) {
+        if ( roleModel == null ) {
+            return null;
+        }
+
+        Role role = new Role();
+
+        role.setId( roleModel.getId() );
+        role.setName( roleModel.getName() );
+        role.setCreatedAt( roleModel.getCreatedAt() );
+
+        return role;
+    }
+
+    protected Country countryModelToCountry(CountryModel countryModel) {
+        if ( countryModel == null ) {
+            return null;
+        }
+
+        Country country = new Country();
+
+        country.setId( countryModel.getId() );
+        country.setName( countryModel.getName() );
+        country.setCreatedAt( countryModel.getCreatedAt() );
+        country.setUpdatedAt( countryModel.getUpdatedAt() );
+
+        return country;
+    }
+
+    protected Set<Country> countryModelSetToCountrySet(Set<CountryModel> set) {
+        if ( set == null ) {
+            return null;
+        }
+
+        Set<Country> set1 = new LinkedHashSet<Country>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
+        for ( CountryModel countryModel : set ) {
+            set1.add( countryModelToCountry( countryModel ) );
         }
 
         return set1;
