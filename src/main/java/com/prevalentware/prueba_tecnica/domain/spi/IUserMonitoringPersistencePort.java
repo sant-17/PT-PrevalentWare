@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IUserMonitoringPersistencePort {
     List<UserMonitoringModel> getUserMonitoringByEmail(UserModel userModel, LocalDate from, LocalDate to);
+    List<UserModel> getTopUsersByMonitoring(LocalDate from, LocalDate to);
 }

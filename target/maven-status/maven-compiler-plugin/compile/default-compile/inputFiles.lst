@@ -13,12 +13,14 @@ D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueb
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\impl\UserMonitoringService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\IUserService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\mapper\response\IUserResponseMapper.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\request\TopUsersMonitoringRequestDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\entity\User.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\impl\UserService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\repository\IRoleRepository.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\repository\IUserRepository.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\response\UserResponseDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\adapter\RoleJpaAdapter.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\response\TopUsersResponseDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\response\CountryResponseDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\mapper\response\ICountryResponseMapper.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\spi\IRolePersistencePort.java

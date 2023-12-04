@@ -1,5 +1,6 @@
 com\prevalentware\prueba_tecnica\infrastructure\output\jpa\repository\IRoleRepository.class
 com\prevalentware\prueba_tecnica\infrastructure\output\jpa\mapper\IRoleMapper.class
+com\prevalentware\prueba_tecnica\application\dto\response\TopUsersResponseDto.class
 com\prevalentware\prueba_tecnica\application\dto\response\UserMonitoringResponseDto.class
 com\prevalentware\prueba_tecnica\domain\usecase\RoleUseCase.class
 com\prevalentware\prueba_tecnica\infrastructure\input\rest\CountryRestController.class
@@ -33,6 +34,7 @@ com\prevalentware\prueba_tecnica\infrastructure\utils\APIResponse.class
 com\prevalentware\prueba_tecnica\infrastructure\output\jpa\entity\Role.class
 com\prevalentware\prueba_tecnica\infrastructure\output\jpa\mapper\ICountryMapperImpl.class
 com\prevalentware\prueba_tecnica\application\mapper\response\IUserResponseMapperImpl.class
+com\prevalentware\prueba_tecnica\application\dto\request\TopUsersMonitoringRequestDto.class
 com\prevalentware\prueba_tecnica\application\dto\response\RoleResponseDto.class
 com\prevalentware\prueba_tecnica\application\service\impl\CountryService.class
 com\prevalentware\prueba_tecnica\application\service\impl\RoleService.class

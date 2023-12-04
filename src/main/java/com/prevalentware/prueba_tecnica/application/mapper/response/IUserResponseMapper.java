@@ -1,5 +1,6 @@
 package com.prevalentware.prueba_tecnica.application.mapper.response;
 
+import com.prevalentware.prueba_tecnica.application.dto.response.TopUsersResponseDto;
 import com.prevalentware.prueba_tecnica.application.dto.response.UserResponseDto;
 import com.prevalentware.prueba_tecnica.domain.model.UserModel;
 import org.mapstruct.Mapper;
@@ -15,4 +16,6 @@ import java.util.List;
 public interface IUserResponseMapper {
     List<UserResponseDto> toResponseList(List<UserModel> userModelList);
     UserResponseDto toResponse(UserModel userModel);
+    TopUsersResponseDto toTopResponse(UserModel userModel);
+    List<TopUsersResponseDto> toTopResponseList(List<UserModel> userModelList);
 }

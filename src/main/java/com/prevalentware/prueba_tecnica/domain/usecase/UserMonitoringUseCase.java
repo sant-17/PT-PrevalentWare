@@ -23,4 +23,9 @@ public class UserMonitoringUseCase implements IUserMonitoringServicePort {
         UserModel userModel = userPersistencePort.getUserByEmail(email);
         return userMonitoringPersistencePort.getUserMonitoringByEmail(userModel, from, to);
     }
+
+    @Override
+    public List<UserModel> getTopUsersByMonitoring(LocalDate from, LocalDate to) {
+        return userMonitoringPersistencePort.getTopUsersByMonitoring(from, to);
+    }
 }

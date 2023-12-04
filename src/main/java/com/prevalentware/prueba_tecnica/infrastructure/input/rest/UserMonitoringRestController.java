@@ -1,7 +1,10 @@
 package com.prevalentware.prueba_tecnica.infrastructure.input.rest;
 
+import com.prevalentware.prueba_tecnica.application.dto.request.TopUsersMonitoringRequestDto;
 import com.prevalentware.prueba_tecnica.application.dto.request.UserMonitoringRequestDto;
+import com.prevalentware.prueba_tecnica.application.dto.response.TopUsersResponseDto;
 import com.prevalentware.prueba_tecnica.application.dto.response.UserMonitoringResponseDto;
+import com.prevalentware.prueba_tecnica.application.dto.response.UserResponseDto;
 import com.prevalentware.prueba_tecnica.application.service.IUserMonitoringService;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.APIResponse;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.Constant;
@@ -31,6 +34,24 @@ public class UserMonitoringRestController {
 
         APIResponse<List<UserMonitoringResponseDto>> response = APIResponse.ok(
                 userMonitoringResponseDtoList,
+                Constant.getLogResponseHashMap(),
+                Constant.LOG_RESPONSE_CODE_PREFIX.concat("6")
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.valueOf(response.getHttpStatus()))
+                .body(response);
+    }
+
+    @GetMapping("/top-users")
+    public ResponseEntity<APIResponse<List<TopUsersResponseDto>>> getTopUsers(@RequestBody TopUsersMonitoringRequestDto dto){
+        List<TopUsersResponseDto> userResponseDtoList = userMonitoringService.getTopUsersByMonitoring(
+                dto.getFrom(),
+                dto.getTo()
+        );
+
+        APIResponse<List<TopUsersResponseDto>> response = APIResponse.ok(
+                userResponseDtoList,
                 Constant.getLogResponseHashMap(),
                 Constant.LOG_RESPONSE_CODE_PREFIX.concat("6")
         );

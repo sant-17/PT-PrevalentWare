@@ -2,6 +2,7 @@ package com.prevalentware.prueba_tecnica.application.mapper.response;
 
 import com.prevalentware.prueba_tecnica.application.dto.response.CountryResponseDto;
 import com.prevalentware.prueba_tecnica.application.dto.response.RoleResponseDto;
+import com.prevalentware.prueba_tecnica.application.dto.response.TopUsersResponseDto;
 import com.prevalentware.prueba_tecnica.application.dto.response.UserResponseDto;
 import com.prevalentware.prueba_tecnica.domain.model.CountryModel;
 import com.prevalentware.prueba_tecnica.domain.model.RoleModel;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-03T19:42:21-0500",
+    date = "2023-12-04T00:45:30-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -56,6 +57,37 @@ public class IUserResponseMapperImpl implements IUserResponseMapper {
         userResponseDto.setCountries( countryModelSetToCountryResponseDtoSet( userModel.getCountries() ) );
 
         return userResponseDto;
+    }
+
+    @Override
+    public TopUsersResponseDto toTopResponse(UserModel userModel) {
+        if ( userModel == null ) {
+            return null;
+        }
+
+        TopUsersResponseDto topUsersResponseDto = new TopUsersResponseDto();
+
+        topUsersResponseDto.setId( userModel.getId() );
+        topUsersResponseDto.setEmail( userModel.getEmail() );
+        topUsersResponseDto.setName( userModel.getName() );
+        topUsersResponseDto.setCreatedAt( userModel.getCreatedAt() );
+        topUsersResponseDto.setRoleId( roleModelToRoleResponseDto( userModel.getRoleId() ) );
+
+        return topUsersResponseDto;
+    }
+
+    @Override
+    public List<TopUsersResponseDto> toTopResponseList(List<UserModel> userModelList) {
+        if ( userModelList == null ) {
+            return null;
+        }
+
+        List<TopUsersResponseDto> list = new ArrayList<TopUsersResponseDto>( userModelList.size() );
+        for ( UserModel userModel : userModelList ) {
+            list.add( toTopResponse( userModel ) );
+        }
+
+        return list;
     }
 
     protected RoleResponseDto roleModelToRoleResponseDto(RoleModel roleModel) {

@@ -8,6 +8,8 @@ import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IUserMa
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IUserMonitoringMapper;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IUserMonitoringRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +30,17 @@ public class UserMonitoringJpaAdapter implements IUserMonitoringPersistencePort 
         return userMonitoringRepository.findUserMonitoringByUserIdBetweenDates(user, fromDateTime, toDateTime)
                 .stream()
                 .map(userMonitoringMapper::toUserMonitoringModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserModel> getTopUsersByMonitoring(LocalDate from, LocalDate to) {
+        Pageable pageable = PageRequest.of(0, 3);
+        LocalDateTime fromDateTime = from.atTime(0, 0);
+        LocalDateTime toDateTime = to.atTime(0, 0);
+        return userMonitoringRepository.findTopUsersByMonitoring(fromDateTime, toDateTime, pageable)
+                .stream()
+                .map(userMapper::toUserModel)
                 .collect(Collectors.toList());
     }
 }
