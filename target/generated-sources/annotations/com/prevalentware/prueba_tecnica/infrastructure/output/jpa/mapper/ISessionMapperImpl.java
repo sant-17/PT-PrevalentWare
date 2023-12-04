@@ -2,13 +2,13 @@ package com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper;
 
 import com.prevalentware.prueba_tecnica.domain.model.CountryModel;
 import com.prevalentware.prueba_tecnica.domain.model.RoleModel;
+import com.prevalentware.prueba_tecnica.domain.model.SessionModel;
 import com.prevalentware.prueba_tecnica.domain.model.UserModel;
-import com.prevalentware.prueba_tecnica.domain.model.UserMonitoringModel;
 import com.prevalentware.prueba_tecnica.domain.utils.RoleName;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Country;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Role;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Session;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.User;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.UserMonitoring;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,29 +21,29 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
-public class IUserMonitoringMapperImpl implements IUserMonitoringMapper {
+public class ISessionMapperImpl implements ISessionMapper {
 
     @Override
-    public UserMonitoringModel toUserMonitoringModel(UserMonitoring userMonitoring) {
-        if ( userMonitoring == null ) {
+    public SessionModel toSessionModel(Session session) {
+        if ( session == null ) {
             return null;
         }
 
         String id = null;
-        Integer usage = null;
-        String description = null;
+        String sessionToken = null;
         UserModel userId = null;
+        LocalDateTime expiresAt = null;
         LocalDateTime createdAt = null;
 
-        id = userMonitoring.getId();
-        usage = userMonitoring.getUsage();
-        description = userMonitoring.getDescription();
-        userId = userToUserModel( userMonitoring.getUserId() );
-        createdAt = userMonitoring.getCreatedAt();
+        id = session.getId();
+        sessionToken = session.getSessionToken();
+        userId = userToUserModel( session.getUserId() );
+        expiresAt = session.getExpiresAt();
+        createdAt = session.getCreatedAt();
 
-        UserMonitoringModel userMonitoringModel = new UserMonitoringModel( id, usage, description, userId, createdAt );
+        SessionModel sessionModel = new SessionModel( id, sessionToken, userId, expiresAt, createdAt );
 
-        return userMonitoringModel;
+        return sessionModel;
     }
 
     protected RoleModel roleToRoleModel(Role role) {

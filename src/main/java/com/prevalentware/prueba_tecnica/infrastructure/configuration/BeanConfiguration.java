@@ -1,29 +1,11 @@
 package com.prevalentware.prueba_tecnica.infrastructure.configuration;
 
-import com.prevalentware.prueba_tecnica.domain.api.ICountryServicePort;
-import com.prevalentware.prueba_tecnica.domain.api.IRoleServicePort;
-import com.prevalentware.prueba_tecnica.domain.api.IUserMonitoringServicePort;
-import com.prevalentware.prueba_tecnica.domain.api.IUserServicePort;
-import com.prevalentware.prueba_tecnica.domain.spi.ICountryPersistencePort;
-import com.prevalentware.prueba_tecnica.domain.spi.IRolePersistencePort;
-import com.prevalentware.prueba_tecnica.domain.spi.IUserMonitoringPersistencePort;
-import com.prevalentware.prueba_tecnica.domain.spi.IUserPersistencePort;
-import com.prevalentware.prueba_tecnica.domain.usecase.CountryUseCase;
-import com.prevalentware.prueba_tecnica.domain.usecase.RoleUseCase;
-import com.prevalentware.prueba_tecnica.domain.usecase.UserMonitoringUseCase;
-import com.prevalentware.prueba_tecnica.domain.usecase.UserUseCase;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.CountryJpaAdapter;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.RoleJpaAdapter;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.UserJpaAdapter;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.UserMonitoringJpaAdapter;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.ICountryMapper;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IRoleMapper;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IUserMapper;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.IUserMonitoringMapper;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.ICountryRepository;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IRoleRepository;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IUserMonitoringRepository;
-import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.IUserRepository;
+import com.prevalentware.prueba_tecnica.domain.api.*;
+import com.prevalentware.prueba_tecnica.domain.spi.*;
+import com.prevalentware.prueba_tecnica.domain.usecase.*;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.adapter.*;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper.*;
+import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +21,8 @@ public class BeanConfiguration {
     private final IUserMapper userMapper;
     private final IUserMonitoringRepository userMonitoringRepository;
     private final IUserMonitoringMapper userMonitoringMapper;
+    private final ISessionRepository sessionRepository;
+    private final ISessionMapper sessionMapper;
 
     @Bean
     public ICountryPersistencePort countryPersistencePort(){
@@ -78,5 +62,15 @@ public class BeanConfiguration {
     @Bean
     public IUserMonitoringServicePort userMonitoringServicePort(){
         return new UserMonitoringUseCase(userMonitoringPersistencePort(), userPersistencePort());
+    }
+
+    @Bean
+    public ISessionPersistencePort sessionPersistencePort(){
+        return new SessionJpaAdapter(sessionRepository, sessionMapper);
+    }
+
+    @Bean
+    public ISessionServicePort sessionServicePort(){
+        return new SessionUseCase(sessionPersistencePort());
     }
 }
