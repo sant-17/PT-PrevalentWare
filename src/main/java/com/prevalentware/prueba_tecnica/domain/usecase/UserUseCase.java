@@ -1,6 +1,7 @@
 package com.prevalentware.prueba_tecnica.domain.usecase;
 
 import com.prevalentware.prueba_tecnica.domain.api.IUserServicePort;
+import com.prevalentware.prueba_tecnica.domain.exception.LogNotFoundException;
 import com.prevalentware.prueba_tecnica.domain.model.UserModel;
 import com.prevalentware.prueba_tecnica.domain.spi.IUserPersistencePort;
 
@@ -15,11 +16,19 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public List<UserModel> getAllUsers(Integer pageNumber, Integer pageSize) {
-        return userPersistencePort.getAllUsers(pageNumber, pageSize);
+        List<UserModel> userModelList = userPersistencePort.getAllUsers(pageNumber, pageSize);
+        if (userModelList.isEmpty()){
+            throw new LogNotFoundException("No User Logs Found");
+        }
+        return userModelList;
     }
 
     @Override
     public UserModel getUserByEmail(String email) {
-        return userPersistencePort.getUserByEmail(email);
+        UserModel userModel = userPersistencePort.getUserByEmail(email);
+        if (userModel == null){
+            throw new LogNotFoundException("No User Log Found By Email");
+        }
+        return userModel;
     }
 }
