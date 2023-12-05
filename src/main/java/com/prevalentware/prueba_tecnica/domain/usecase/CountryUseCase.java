@@ -1,6 +1,7 @@
 package com.prevalentware.prueba_tecnica.domain.usecase;
 
 import com.prevalentware.prueba_tecnica.domain.api.ICountryServicePort;
+import com.prevalentware.prueba_tecnica.domain.exception.LogNotFoundException;
 import com.prevalentware.prueba_tecnica.domain.model.CountryModel;
 import com.prevalentware.prueba_tecnica.domain.spi.ICountryPersistencePort;
 
@@ -16,6 +17,10 @@ public class CountryUseCase implements ICountryServicePort {
 
     @Override
     public List<CountryModel> getAllCountries(Integer pageNumber, Integer pageSize) {
-        return countryPersistencePort.getAllCountries(pageNumber, pageSize);
+        List<CountryModel> countryModelList = countryPersistencePort.getAllCountries(pageNumber, pageSize);
+        if (countryModelList.isEmpty()){
+            throw new LogNotFoundException("No Country Logs Found");
+        }
+        return countryModelList;
     }
 }

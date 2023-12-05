@@ -40,11 +40,11 @@ public class APIResponse <T>{
                 .build();
     }
 
-    public static <T> APIResponse<T> notFound(T data, Map<String, String> responseHashMap, String key) {
+    public static <T> APIResponse<T> notFound(T data, Map<String, String> responseHashMap, String message, String key) {
         return APIResponse.<T>builder()
                 .httpStatus(HttpStatus.NOT_FOUND.value())
                 .status(Constant.RESULT_KO)
-                .message(responseHashMap.get(key))
+                .message(responseHashMap.get(key).concat(" - " + message))
                 .internalCode(key)
                 .data(data)
                 .build();

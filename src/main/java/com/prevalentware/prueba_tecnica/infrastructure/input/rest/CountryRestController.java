@@ -4,6 +4,8 @@ import com.prevalentware.prueba_tecnica.application.dto.response.CountryResponse
 import com.prevalentware.prueba_tecnica.application.service.ICountryService;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.APIResponse;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.Constant;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class CountryRestController {
     private final ICountryService countryService;
 
     @GetMapping("all/size/{size}/number/{number}")
-    public ResponseEntity<APIResponse<List<CountryResponseDto>>> getAllCountries(@PathVariable("size") Integer size, @PathVariable("number") Integer number){
+    public ResponseEntity<APIResponse<List<CountryResponseDto>>> getAllCountries(@PathVariable @Min(1) Integer size, @PathVariable @Min(0) Integer number){
         List<CountryResponseDto> countryResponseList = countryService.getAllCountries(number, size);
 
         APIResponse<List<CountryResponseDto>> response = APIResponse.ok(

@@ -1,6 +1,8 @@
 package com.prevalentware.prueba_tecnica.domain.usecase;
 
 import com.prevalentware.prueba_tecnica.domain.api.IUserMonitoringServicePort;
+import com.prevalentware.prueba_tecnica.domain.exception.DateOrderViolationException;
+import com.prevalentware.prueba_tecnica.domain.exception.LogNotFoundException;
 import com.prevalentware.prueba_tecnica.domain.model.UserModel;
 import com.prevalentware.prueba_tecnica.domain.model.UserMonitoringModel;
 import com.prevalentware.prueba_tecnica.domain.spi.IUserMonitoringPersistencePort;
@@ -21,11 +23,33 @@ public class UserMonitoringUseCase implements IUserMonitoringServicePort {
     @Override
     public List<UserMonitoringModel> getUserMonitoringByEmail(String email, LocalDate from, LocalDate to) {
         UserModel userModel = userPersistencePort.getUserByEmail(email);
-        return userMonitoringPersistencePort.getUserMonitoringByEmail(userModel, from, to);
+        if (userModel == null){
+            throw new LogNotFoundException("No User Log Found By Email");
+        }
+
+        if (to.isBefore(from)){
+            throw new DateOrderViolationException();
+        }
+
+        List<UserMonitoringModel> userMonitoringModelList = userMonitoringPersistencePort.getUserMonitoringByEmail(userModel, from, to);
+        if (userMonitoringModelList.isEmpty()){
+            throw new LogNotFoundException("No UserMonitoring Logs Found");
+        }
+
+        return userMonitoringModelList;
     }
 
     @Override
     public List<UserModel> getTopUsersByMonitoring(LocalDate from, LocalDate to) {
+        if (to.isBefore(from)){
+            throw new DateOrderViolationException();
+        }
+
+        List<UserModel> userModelList = userMonitoringPersistencePort.getTopUsersByMonitoring(from, to);
+        if (userModelList.isEmpty()){
+            throw new LogNotFoundException("No User Monitoring Found");
+        }
+
         return userMonitoringPersistencePort.getTopUsersByMonitoring(from, to);
     }
 }
