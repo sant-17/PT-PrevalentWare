@@ -1,4 +1,5 @@
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\api\ISessionServicePort.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\security\JwtTokenAuthenticationFilter.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\response\UserMonitoringResponseDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\model\UserModel.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\mapper\IUserMapper.java
@@ -7,6 +8,7 @@ D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueb
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\utils\Constant.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\input\rest\UserMonitoringRestController.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\mapper\IRoleMapper.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\security\SecurityConfig.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\api\ICountryServicePort.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\usecase\CountryUseCase.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\mapper\response\ISessionResponseMapper.java
@@ -16,6 +18,7 @@ D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueb
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\impl\UserMonitoringService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\IUserService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\mapper\response\IUserResponseMapper.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\utils\HttpRequestAuthTkn.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\request\TopUsersMonitoringRequestDto.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\entity\User.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\impl\UserService.java
@@ -36,6 +39,7 @@ D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueb
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\impl\RoleService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\PruebaTecnicaApplication.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\dto\response\RoleResponseDto.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\exception\RoleUnauthorizedException.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\spi\ICountryPersistencePort.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\adapter\CountryJpaAdapter.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\exception\DateOrderViolationException.java
@@ -54,6 +58,7 @@ D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueb
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\service\ISessionService.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\exception\LogNotFoundException.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\mapper\ISessionMapper.java
+D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\security\DecodedToken.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\application\mapper\response\IRoleResponseMapper.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\infrastructure\output\jpa\adapter\SessionJpaAdapter.java
 D:\Workspace\prueba_tecnica\prueba_tecnica\src\main\java\com\prevalentware\prueba_tecnica\domain\api\IRoleServicePort.java
