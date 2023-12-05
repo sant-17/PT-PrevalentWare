@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-04T16:35:49-0500",
+    date = "2023-12-05T00:01:04-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -102,31 +102,19 @@ public class IUserMonitoringMapperImpl implements IUserMonitoringMapper {
             return null;
         }
 
-        String id = null;
-        String email = null;
-        LocalDateTime emailVerified = null;
-        LocalDateTime termsAndConditionsAccepted = null;
-        String name = null;
-        String image = null;
-        String position = null;
-        LocalDateTime createdAt = null;
-        LocalDateTime updatedAt = null;
-        RoleModel roleId = null;
-        Set<CountryModel> countries = null;
+        UserModel userModel = new UserModel();
 
-        id = user.getId();
-        email = user.getEmail();
-        emailVerified = user.getEmailVerified();
-        termsAndConditionsAccepted = user.getTermsAndConditionsAccepted();
-        name = user.getName();
-        image = user.getImage();
-        position = user.getPosition();
-        createdAt = user.getCreatedAt();
-        updatedAt = user.getUpdatedAt();
-        roleId = roleToRoleModel( user.getRoleId() );
-        countries = countrySetToCountryModelSet( user.getCountries() );
-
-        UserModel userModel = new UserModel( id, email, emailVerified, termsAndConditionsAccepted, name, image, position, createdAt, updatedAt, roleId, countries );
+        userModel.setId( user.getId() );
+        userModel.setEmail( user.getEmail() );
+        userModel.setEmailVerified( user.getEmailVerified() );
+        userModel.setTermsAndConditionsAccepted( user.getTermsAndConditionsAccepted() );
+        userModel.setName( user.getName() );
+        userModel.setImage( user.getImage() );
+        userModel.setPosition( user.getPosition() );
+        userModel.setCreatedAt( user.getCreatedAt() );
+        userModel.setUpdatedAt( user.getUpdatedAt() );
+        userModel.setRoleId( roleToRoleModel( user.getRoleId() ) );
+        userModel.setCountries( countrySetToCountryModelSet( user.getCountries() ) );
 
         return userModel;
     }

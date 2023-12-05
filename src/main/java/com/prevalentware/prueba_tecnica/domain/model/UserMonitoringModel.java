@@ -17,6 +17,9 @@ public class UserMonitoringModel {
         this.createdAt = createdAt;
     }
 
+    public UserMonitoringModel() {
+    }
+
     public String getId() {
         return id;
     }

@@ -30,6 +30,9 @@ public class UserModel {
         this.countries = countries;
     }
 
+    public UserModel() {
+    }
+
     public String getId() {
         return id;
     }

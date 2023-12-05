@@ -15,6 +15,9 @@ public class CountryModel {
         this.updatedAt = updatedAt;
     }
 
+    public CountryModel() {
+    }
+
     public String getId() {
         return id;
     }
