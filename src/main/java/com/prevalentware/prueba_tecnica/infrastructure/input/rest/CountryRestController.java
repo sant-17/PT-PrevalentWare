@@ -4,13 +4,14 @@ import com.prevalentware.prueba_tecnica.application.dto.response.CountryResponse
 import com.prevalentware.prueba_tecnica.application.service.ICountryService;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.APIResponse;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.Constant;
+import com.prevalentware.prueba_tecnica.infrastructure.utils.HttpRequestAuthTkn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Tag(name = "Country", description = "La API de la tabla Country")
@@ -29,6 +31,7 @@ import java.util.List;
 public class CountryRestController {
 
     private final ICountryService countryService;
+    private final HttpRequestAuthTkn httpRequestAuthTkn;
 
     @Operation(
             summary = "Obtener todos los países.",
@@ -49,7 +52,8 @@ public class CountryRestController {
                     content = @Content(schema = @Schema(implementation = APIResponse.class))),
     })
     @GetMapping("all/size/{size}/number/{number}")
-    public ResponseEntity<APIResponse<List<CountryResponseDto>>> getAllCountries(@PathVariable @Min(1) Integer size, @PathVariable @Min(0) Integer number){
+    public ResponseEntity<APIResponse<List<CountryResponseDto>>> getAllCountries(@PathVariable @Min(1) Integer size, @PathVariable @Min(0) Integer number, HttpServletRequest request) throws UnsupportedEncodingException {
+        httpRequestAuthTkn.managerAuthorization(httpRequestAuthTkn.getRoleFromHttpRequest(request));
         List<CountryResponseDto> countryResponseList = countryService.getAllCountries(number, size);
 
         APIResponse<List<CountryResponseDto>> response = APIResponse.ok(

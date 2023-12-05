@@ -1,5 +1,6 @@
 package com.prevalentware.prueba_tecnica.application.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 

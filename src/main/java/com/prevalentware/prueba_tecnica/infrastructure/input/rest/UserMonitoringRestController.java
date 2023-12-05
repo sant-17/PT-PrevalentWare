@@ -8,12 +8,15 @@ import com.prevalentware.prueba_tecnica.application.dto.response.UserResponseDto
 import com.prevalentware.prueba_tecnica.application.service.IUserMonitoringService;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.APIResponse;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.Constant;
+import com.prevalentware.prueba_tecnica.infrastructure.utils.HttpRequestAuthTkn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Tag(name = "UserMonitoring", description = "La API de la tabla UserMonitoring")
@@ -30,6 +34,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserMonitoringRestController {
     private final IUserMonitoringService userMonitoringService;
+    private final HttpRequestAuthTkn httpRequestAuthTkn;
 
     @Operation(
             summary = "Obtener el monitoreo del usuario.",
@@ -53,7 +58,9 @@ public class UserMonitoringRestController {
                     content = @Content(schema = @Schema(implementation = APIResponse.class))),
     })
     @GetMapping("/")
-    public ResponseEntity<APIResponse<List<UserMonitoringResponseDto>>> getUserMonitoring(@RequestBody UserMonitoringRequestDto dto){
+    public ResponseEntity<APIResponse<List<UserMonitoringResponseDto>>> getUserMonitoring(@RequestBody @Valid UserMonitoringRequestDto dto, HttpServletRequest request) throws UnsupportedEncodingException {
+        httpRequestAuthTkn.adminAuthorization(httpRequestAuthTkn.getRoleFromHttpRequest(request));
+
         List<UserMonitoringResponseDto> userMonitoringResponseDtoList = userMonitoringService.getUserMonitoringByEmail(
                 dto.getEmail(),
                 dto.getFrom(),
@@ -91,7 +98,9 @@ public class UserMonitoringRestController {
                     content = @Content(schema = @Schema(implementation = APIResponse.class))),
     })
     @GetMapping("/top-users")
-    public ResponseEntity<APIResponse<List<TopUsersResponseDto>>> getTopUsers(@RequestBody TopUsersMonitoringRequestDto dto){
+    public ResponseEntity<APIResponse<List<TopUsersResponseDto>>> getTopUsers(@RequestBody @Valid TopUsersMonitoringRequestDto dto, HttpServletRequest request) throws UnsupportedEncodingException {
+        httpRequestAuthTkn.adminAuthorization(httpRequestAuthTkn.getRoleFromHttpRequest(request));
+
         List<TopUsersResponseDto> userResponseDtoList = userMonitoringService.getTopUsersByMonitoring(
                 dto.getFrom(),
                 dto.getTo()

@@ -2,6 +2,7 @@ package com.prevalentware.prueba_tecnica.infrastructure.exceptionhandler;
 
 import com.prevalentware.prueba_tecnica.domain.exception.DateOrderViolationException;
 import com.prevalentware.prueba_tecnica.domain.exception.LogNotFoundException;
+import com.prevalentware.prueba_tecnica.domain.exception.RoleUnauthorizedException;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.APIResponse;
 import com.prevalentware.prueba_tecnica.infrastructure.utils.Constant;
 import org.springframework.http.HttpHeaders;
@@ -43,7 +44,7 @@ public class ControllerAdvisor {
                 .httpStatus(HttpStatus.BAD_REQUEST.value())
                 .status(Constant.RESULT_KO)
                 .message(ex.getMessage())
-                .internalCode("GENERIC-ERROR")
+                .internalCode("METHOD-ARGUMENT-TYPE-MISMATCH")
                 .data(null)
                 .build();
 
@@ -56,7 +57,7 @@ public class ControllerAdvisor {
                 .httpStatus(HttpStatus.BAD_REQUEST.value())
                 .status(Constant.RESULT_KO)
                 .message(ex.getMessage())
-                .internalCode("GENERIC-ERROR")
+                .internalCode("ILLEGAL-ARGUMENT")
                 .data(null)
                 .build();
 
@@ -69,7 +70,20 @@ public class ControllerAdvisor {
                 .httpStatus(HttpStatus.BAD_REQUEST.value())
                 .status(Constant.RESULT_KO)
                 .message(ex.getMessage())
-                .internalCode("GENERIC-ERROR")
+                .internalCode("HTTP-MESSAGE-NOT-READABLE")
+                .data(null)
+                .build();
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.valueOf(apiResponse.getHttpStatus()));
+    }
+
+    @ExceptionHandler(RoleUnauthorizedException.class)
+    public ResponseEntity<APIResponse<String>> handleRoleUnauthorizedException(RoleUnauthorizedException ex) {
+        APIResponse<String> apiResponse = APIResponse.<String>builder()
+                .httpStatus(HttpStatus.UNAUTHORIZED.value())
+                .status(Constant.RESULT_KO)
+                .message(ex.getMessage())
+                .internalCode("ROLE-UNAUTHORIZED")
                 .data(null)
                 .build();
 
