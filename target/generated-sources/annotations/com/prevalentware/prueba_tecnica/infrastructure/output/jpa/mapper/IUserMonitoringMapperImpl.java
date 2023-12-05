@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-05T00:01:04-0500",
+    date = "2023-12-05T01:36:21-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -29,19 +29,13 @@ public class IUserMonitoringMapperImpl implements IUserMonitoringMapper {
             return null;
         }
 
-        String id = null;
-        Integer usage = null;
-        String description = null;
-        UserModel userId = null;
-        LocalDateTime createdAt = null;
+        UserMonitoringModel userMonitoringModel = new UserMonitoringModel();
 
-        id = userMonitoring.getId();
-        usage = userMonitoring.getUsage();
-        description = userMonitoring.getDescription();
-        userId = userToUserModel( userMonitoring.getUserId() );
-        createdAt = userMonitoring.getCreatedAt();
-
-        UserMonitoringModel userMonitoringModel = new UserMonitoringModel( id, usage, description, userId, createdAt );
+        userMonitoringModel.setId( userMonitoring.getId() );
+        userMonitoringModel.setUsage( userMonitoring.getUsage() );
+        userMonitoringModel.setDescription( userMonitoring.getDescription() );
+        userMonitoringModel.setUserId( userToUserModel( userMonitoring.getUserId() ) );
+        userMonitoringModel.setCreatedAt( userMonitoring.getCreatedAt() );
 
         return userMonitoringModel;
     }
@@ -69,17 +63,12 @@ public class IUserMonitoringMapperImpl implements IUserMonitoringMapper {
             return null;
         }
 
-        String id = null;
-        String name = null;
-        LocalDateTime createdAt = null;
-        LocalDateTime updatedAt = null;
+        CountryModel countryModel = new CountryModel();
 
-        id = country.getId();
-        name = country.getName();
-        createdAt = country.getCreatedAt();
-        updatedAt = country.getUpdatedAt();
-
-        CountryModel countryModel = new CountryModel( id, name, createdAt, updatedAt );
+        countryModel.setId( country.getId() );
+        countryModel.setName( country.getName() );
+        countryModel.setCreatedAt( country.getCreatedAt() );
+        countryModel.setUpdatedAt( country.getUpdatedAt() );
 
         return countryModel;
     }

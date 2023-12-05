@@ -90,7 +90,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(DateOrderViolationException.class)
     public ResponseEntity<APIResponse<String>> handleDateOrderViolationException(DateOrderViolationException ex) {
-        APIResponse<String> apiResponse = APIResponse.notFound(
+        APIResponse<String> apiResponse = APIResponse.badRequest(
                 null,
                 Constant.getLogResponseHashMap(),
                 ex.getMessage(),
