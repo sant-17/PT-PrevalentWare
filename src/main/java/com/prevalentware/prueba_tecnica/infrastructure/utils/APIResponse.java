@@ -30,7 +30,7 @@ public class APIResponse <T>{
                 .build();
     }
 
-    public static <T> APIResponse<T> badRequest(T data, Map<String, String> responseHashMap, String key) {
+    public static <T> APIResponse<T> badRequest(T data, Map<String, String> responseHashMap, String message, String key) {
         return APIResponse.<T>builder()
                 .httpStatus(HttpStatus.BAD_REQUEST.value())
                 .status(Constant.RESULT_KO)

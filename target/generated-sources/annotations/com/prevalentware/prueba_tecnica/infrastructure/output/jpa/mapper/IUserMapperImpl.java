@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-05T00:01:05-0500",
+    date = "2023-12-05T01:36:22-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -90,17 +90,12 @@ public class IUserMapperImpl implements IUserMapper {
             return null;
         }
 
-        String id = null;
-        String name = null;
-        LocalDateTime createdAt = null;
-        LocalDateTime updatedAt = null;
+        CountryModel countryModel = new CountryModel();
 
-        id = country.getId();
-        name = country.getName();
-        createdAt = country.getCreatedAt();
-        updatedAt = country.getUpdatedAt();
-
-        CountryModel countryModel = new CountryModel( id, name, createdAt, updatedAt );
+        countryModel.setId( country.getId() );
+        countryModel.setName( country.getName() );
+        countryModel.setCreatedAt( country.getCreatedAt() );
+        countryModel.setUpdatedAt( country.getUpdatedAt() );
 
         return countryModel;
     }

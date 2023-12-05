@@ -54,7 +54,6 @@ com\prevalentware\prueba_tecnica\application\service\impl\UserMonitoringService.
 com\prevalentware\prueba_tecnica\infrastructure\configuration\BeanConfiguration.class
 com\prevalentware\prueba_tecnica\infrastructure\output\jpa\repository\IUserRepository.class
 com\prevalentware\prueba_tecnica\domain\api\IUserServicePort.class
-com\prevalentware\prueba_tecnica\infrastructure\input\rest\RoleRestController.class
 com\prevalentware\prueba_tecnica\domain\model\RoleModel.class
 com\prevalentware\prueba_tecnica\domain\model\UserModel.class
 com\prevalentware\prueba_tecnica\domain\utils\RoleName.class

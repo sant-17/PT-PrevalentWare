@@ -2,13 +2,12 @@ package com.prevalentware.prueba_tecnica.infrastructure.output.jpa.mapper;
 
 import com.prevalentware.prueba_tecnica.domain.model.CountryModel;
 import com.prevalentware.prueba_tecnica.infrastructure.output.jpa.entity.Country;
-import java.time.LocalDateTime;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-05T00:01:04-0500",
+    date = "2023-12-05T01:36:21-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
@@ -20,17 +19,12 @@ public class ICountryMapperImpl implements ICountryMapper {
             return null;
         }
 
-        String id = null;
-        String name = null;
-        LocalDateTime createdAt = null;
-        LocalDateTime updatedAt = null;
+        CountryModel countryModel = new CountryModel();
 
-        id = country.getId();
-        name = country.getName();
-        createdAt = country.getCreatedAt();
-        updatedAt = country.getUpdatedAt();
-
-        CountryModel countryModel = new CountryModel( id, name, createdAt, updatedAt );
+        countryModel.setId( country.getId() );
+        countryModel.setName( country.getName() );
+        countryModel.setCreatedAt( country.getCreatedAt() );
+        countryModel.setUpdatedAt( country.getUpdatedAt() );
 
         return countryModel;
     }
